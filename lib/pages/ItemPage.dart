@@ -6,8 +6,8 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
-import 'ItemAppBar.dart';
-import 'ItemBottomNavBar.dart';
+import '../Widgets/ItemAppBar.dart';
+import '../Widgets/ItemBottomNavBar.dart';
 
 class ItemPage extends StatelessWidget {
   ItemPage({super.key});
@@ -54,7 +54,7 @@ class ItemPage extends StatelessWidget {
                             style: TextStyle(
                               fontSize: 28,
                               fontWeight: FontWeight.bold,
-                              color: Color(0xFF4C53A5),
+                              color: Color(0xFFee4d2d),
                             ),
                           ),
                         ],
@@ -75,7 +75,7 @@ class ItemPage extends StatelessWidget {
                             itemPadding: EdgeInsets.symmetric(horizontal: 4),
                             itemBuilder: (context, _) => Icon(
                               Icons.star,
-                              color: Color(0xFF4C53A5),
+                              color: Color(0xFFee4d2d),
                             ),
                             onRatingUpdate: (index) {},
                           ),
@@ -104,7 +104,7 @@ class ItemPage extends StatelessWidget {
                                   style: TextStyle(
                                       fontSize: 18,
                                       fontWeight: FontWeight.bold,
-                                      color: Color(0xFF4C53A5)),
+                                      color: Color(0xFF333333)),
                                 ),
                               ),
                               Container(
@@ -133,7 +133,7 @@ class ItemPage extends StatelessWidget {
                       child: Text(
                         "this is more detailed descesrptins of the product. you can wirte",
                         style:
-                            TextStyle(fontSize: 17, color: Color(0xFF4C53A5)),
+                            TextStyle(fontSize: 17, color: Color(0xFF333333)),
                       ),
                     ),
                     Padding(
@@ -144,7 +144,7 @@ class ItemPage extends StatelessWidget {
                             "size",
                             style: TextStyle(
                                 fontSize: 18,
-                                color: Color(0xFF4C53A5),
+                                color: Color(0xFF333333),
                                 fontWeight: FontWeight.bold),
                           ),
                           SizedBox(
@@ -172,7 +172,7 @@ class ItemPage extends StatelessWidget {
                                     style: TextStyle(
                                         fontSize: 18,
                                         fontWeight: FontWeight.bold,
-                                        color: Color(0xFF4C53A5)),
+                                        color: Color(0xFF333333)),
                                   ),
                                 )
                             ],
@@ -188,7 +188,7 @@ class ItemPage extends StatelessWidget {
                             "Colors",
                             style: TextStyle(
                                 fontSize: 18,
-                                color: Color(0xFF4C53A5),
+                                color: Color(0xFF333333),
                                 fontWeight: FontWeight.bold),
                           ),
                           SizedBox(

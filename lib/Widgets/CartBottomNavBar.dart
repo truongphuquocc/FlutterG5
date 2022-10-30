@@ -20,7 +20,7 @@ class CartBottomNavBar extends StatelessWidget {
                 Text(
                   "Total",
                   style: TextStyle(
-                    color: Color(0xFF4C53A5),
+                    color: Color(0xFFee4d2d),
                     fontSize: 22,
                     fontWeight: FontWeight.bold,
                   ),
@@ -35,10 +35,12 @@ class CartBottomNavBar extends StatelessWidget {
               ],
             ),
             Container(
+              width: double.infinity,
+              alignment: Alignment.center,
               height: 50,
               decoration: BoxDecoration(
-                color: Color(0xFF4C53A5),
-                borderRadius: BorderRadius.circular(20),
+                color: Color(0xFFee4d2d),
+                borderRadius: BorderRadius.circular(15),
               ),
               child: (Text(
                 "Check out",

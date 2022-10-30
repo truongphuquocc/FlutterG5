@@ -1,4 +1,5 @@
 import 'package:badges/badges.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class HomeAppBar extends StatelessWidget {
@@ -6,43 +7,42 @@ class HomeAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-   return Container(
-      color: Colors.white,
+    return Container(
+      color: Color(0xFFee4d2d),
       padding: EdgeInsets.all(25),
       child: Row(
         children: [
           Icon(
             Icons.sort,
             size: 30,
-            color: Color(0xFF4C53A5),
+            color: Colors.white,
           ),
-          Padding(padding: EdgeInsets.only(left: 20,),
+          Padding(
+            padding: EdgeInsets.only(
+              left: 20,
+            ),
             child: Text(
-              "TD Shop",
+              "Shopee FAKE",
               style: TextStyle(
                 fontSize: 23,
                 fontWeight: FontWeight.bold,
-                color: Color(0xFF4C53A5),
+                color: Colors.white,
               ),
             ),
           ),
           Spacer(),
           Badge(
-            badgeColor: Colors.red,
-            badgeContent: Text(
-              "3",
-              style: TextStyle(
-                color: Colors.white
-              ),
-            ),
+            badgeColor: Color.fromARGB(255, 199, 18, 5),
+            badgeContent: Text("3", style: TextStyle(color: Colors.white)),
             padding: EdgeInsets.all(7),
             child: InkWell(
-              onTap: (){
+              onTap: () {
                 Navigator.pushNamed(context, "cartPage");
               },
-              child: Icon(Icons.shopping_bag_outlined,
-              size: 30,
-              color: Color(0xFF4C53A5)   ,
+              child: Icon(
+                CupertinoIcons.cart,
+                size: 30,
+                color: Colors.white,
               ),
             ),
           ),

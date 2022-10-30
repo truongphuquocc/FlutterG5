@@ -49,17 +49,18 @@ class _CategoriesState extends State<Categories> {
             Text(
               categories[index],
               style: TextStyle(
+                fontSize: 15,
                   fontWeight: FontWeight.bold,
                   color: selectedIndex == index
-                      ? Color(0xFF4C53A5)
-                      : Color.fromARGB(255, 160, 134, 196)),
+                      ? Color(0xFFee4d2d)
+                      :  Color(0xFF333333)),
             ),
             Container(
               margin: EdgeInsets.only(top: 20.0 / 4),
               height: 2,
-              width: 30,
+              width: 90,
               color: selectedIndex == index
-                  ? Color(0xFF4C53A5)
+                  ? Color(0xFFee4d2d)
                   : Colors.transparent,
             )
           ],

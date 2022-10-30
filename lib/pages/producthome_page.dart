@@ -46,15 +46,18 @@ class HomePage extends StatelessWidget {
                         width: 300,
                         child: TextFormField(
                           decoration: InputDecoration(
-                              border: InputBorder.none,
-                              hintText: "Search here..."),
+                            border: InputBorder.none,
+                            hintText: "Search here...",
+                            hintStyle: TextStyle(
+                                fontSize: 20.0,  color: Color(0xFFee4d2d),),
+                          ),
                         ),
                       ),
                       Spacer(),
                       Icon(
-                        Icons.camera_alt,
+                        Icons.search_rounded,
                         size: 27,
-                        color: Color(0xFF4C53A5),
+                        color: Color(0xFF333333),
                       ),
                     ],
                   ),
@@ -65,9 +68,10 @@ class HomePage extends StatelessWidget {
                   child: Text(
                     "Categories",
                     style: TextStyle(
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold,
-                        color: Color(0xFF4C53A5)),
+                      fontSize: 25,
+                      fontWeight: FontWeight.bold,
+                      color: Color(0xFFee4d2d),
+                    ),
                   ),
                 ),
 
@@ -79,11 +83,12 @@ class HomePage extends StatelessWidget {
                   alignment: Alignment.centerLeft,
                   margin: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
                   child: Text(
-                    "Best seling",
+                    "Product",
                     style: TextStyle(
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold,
-                        color: Color(0xFF4C53A5)),
+                      fontSize: 25,
+                      fontWeight: FontWeight.bold,
+                      color: Color(0xFFee4d2d),
+                    ),
                   ),
                 ),
 
@@ -97,7 +102,7 @@ class HomePage extends StatelessWidget {
           backgroundColor: Colors.transparent,
           onTap: (index) {},
           height: 70,
-          color: Color(0xFF4C53A5),
+          color: Color(0xFFee4d2d),
           items: [
             Icon(
               Icons.home,

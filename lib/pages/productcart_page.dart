@@ -31,7 +31,7 @@ class CartPage extends StatelessWidget {
                     children: [
                       Container(
                         decoration: BoxDecoration(
-                          color: Color(0xFF4C53A5),
+                          color: Color(0xFFee4d2d),
                           borderRadius: BorderRadius.circular(20),
                         ),
                         child: Icon(
@@ -46,7 +46,7 @@ class CartPage extends StatelessWidget {
                           style: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
-                            color: Color(0xFF4C53A5),
+                            color: Color(0xFFee4d2d),
                           ),
                         ),
                       )

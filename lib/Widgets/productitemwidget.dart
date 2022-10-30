@@ -1,4 +1,5 @@
 import 'package:g5/provider/product_provider.dart';
+import 'package:g5/provider/product_provider.dart';
 import 'package:provider/provider.dart';
 
 import 'package:flutter/material.dart';
@@ -11,7 +12,7 @@ class ProductItem extends StatelessWidget {
     var provider = Provider.of<ProductProvider>(context);
     provider.getProducts();
     return GridView.count(
-      childAspectRatio: 0.68,
+      childAspectRatio: 0.75,
       physics: NeverScrollableScrollPhysics(),
       crossAxisCount: 2,
       shrinkWrap: true,
@@ -29,24 +30,24 @@ class ProductItem extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Container(
-                      padding: EdgeInsets.all(5),
-                      decoration: BoxDecoration(
-                        color: Color(0xFF4C53A5),
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      child: Text(
-                        "-50%",
-                        style: TextStyle(
-                            fontSize: 14,
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                    Icon(
-                      Icons.favorite_border,
-                      color: Colors.red,
-                    )
+                    // Container(
+                    //   padding: EdgeInsets.all(5),
+                    //   decoration: BoxDecoration(
+
+                    //     borderRadius: BorderRadius.circular(20),
+                    //   ),
+                    //   child: Text(
+                    //     "",
+                    //     style: TextStyle(
+                    //         fontSize: 14,
+                    //         color: Colors.white,
+                    //         fontWeight: FontWeight.bold),
+                    //   ),
+                    // ),
+                    // Icon(
+                    //   Icons.favorite_border,
+                    //   color: Colors.red,
+                    // )
                   ],
                 ),
                 InkWell(
@@ -67,10 +68,10 @@ class ProductItem extends StatelessWidget {
                   alignment: Alignment.centerLeft,
                   child: Text(
                     e.title ?? "",
-                     overflow: TextOverflow.ellipsis,
+                    overflow: TextOverflow.ellipsis,
                     style: TextStyle(
                         fontSize: 14,
-                        color: Color(0xFF4C53A5),
+                        color: Color(0xFF333333),
                         fontWeight: FontWeight.bold),
                   ),
                 ),
@@ -84,13 +85,31 @@ class ProductItem extends StatelessWidget {
                         style: TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.bold,
-                          color: Color(0xFF4C53A5),
+                          color: Color(0xFFee4d2d),
                         ),
                       ),
                       Icon(
                         Icons.shopping_cart_checkout,
-                        color: Color(0xFF4C53A5),
+                        color: Color(0xFFee4d2d),
                       )
+                    ],
+                  ),
+                ),
+                Container(
+                  alignment: Alignment.centerLeft,
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.star,
+                        color: Colors.orangeAccent,
+                      ),
+                      Text(
+                        "${e.rating?.rate ?? 0}",
+                        style: TextStyle(
+                          fontSize: 15,
+                          color: Color(0xFF333333),
+                        ),
+                      ),
                     ],
                   ),
                 ),

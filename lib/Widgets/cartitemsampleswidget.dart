@@ -22,7 +22,7 @@ class CartItemSamples extends StatelessWidget {
                 Radio(
                   value: "",
                   groupValue: "",
-                  activeColor: Color(0xFF4C53A5),
+                  activeColor: Color(0xFFee4d2d),
                   onChanged: (index) {},
                 ),
                 Container(
@@ -38,11 +38,11 @@ class CartItemSamples extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        "data",
+                        "Watch stupid",
                         style: TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.bold,
-                          color: Color(0xFF4C53A5),
+                          color: Color(0xFF333333),
                         ),
                       ),
                       Text(
@@ -50,7 +50,7 @@ class CartItemSamples extends StatelessWidget {
                         style: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
-                            color: Color(0xFF4C53A5)),
+                            color: Color(0xFFee4d2d)),
                       )
                     ],
                   ),
@@ -82,6 +82,7 @@ class CartItemSamples extends StatelessWidget {
                             child: Icon(
                               CupertinoIcons.plus,
                               size: 18,
+                              color: Color(0xFF333333),
                             ),
                           ),
                           Container(
@@ -91,7 +92,7 @@ class CartItemSamples extends StatelessWidget {
                               style: TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.bold,
-                                color: Color(0xFF4C53A5),
+                                color: Color(0xFF333333),
                               ),
                             ),
                           ),
@@ -109,6 +110,7 @@ class CartItemSamples extends StatelessWidget {
                             child: Icon(
                               CupertinoIcons.minus,
                               size: 18,
+                              color: Color(0xFF333333),
                             ),
                           ),
                         ],
