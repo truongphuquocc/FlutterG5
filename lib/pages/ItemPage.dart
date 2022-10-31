@@ -1,17 +1,20 @@
 import 'package:clippy_flutter/arc.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-
+import 'package:g5/Model/product_model.dart';
+import 'package:provider/provider.dart';
 import '../Widgets/ItemAppBar.dart';
-import '../Widgets/ItemBottomNavBar.dart';
 
-class ItemPage extends StatelessWidget {
-  ItemPage({super.key});
+import '../provider/product_provider.dart';
 
+class ItemPage extends StatefulWidget {
+  const ItemPage({Key? key}) : super(key: key);
+  @override
+  State<ItemPage> createState() => _ItemPage();
+}
+
+class _ItemPage extends State<ItemPage> {
   List<Color> Clrs = [
     Colors.red,
     Colors.blue,
@@ -22,14 +25,17 @@ class ItemPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var pp = Provider.of<ProductProvider>(context);
+    ProductModel temp = pp.detail;
+
     return Scaffold(
       backgroundColor: Color(0xFFEDECF2),
       body: ListView(
         children: [
           ItemAppBar(),
           Padding(
-            padding: EdgeInsets.all(16),
-            child: Image.asset("Assets/Images/7.png", height: 300),
+            padding: EdgeInsets.all(10),
+            child: Image.network(temp.image ?? ""),
           ),
           Arc(
             edge: Edge.TOP,
@@ -50,7 +56,8 @@ class ItemPage extends StatelessWidget {
                       child: Row(
                         children: [
                           Text(
-                            "Prodcut title",
+                            temp.title ?? "",
+                            overflow: TextOverflow.ellipsis,
                             style: TextStyle(
                               fontSize: 28,
                               fontWeight: FontWeight.bold,
@@ -66,7 +73,7 @@ class ItemPage extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           RatingBar.builder(
-                            initialRating: 4.3,
+                            initialRating: (temp.rating?.rate ?? 0).toDouble(),
                             minRating: 1,
                             direction: Axis.horizontal,
                             allowHalfRating: true,
@@ -94,13 +101,19 @@ class ItemPage extends StatelessWidget {
                                         offset: Offset(0, 3),
                                       )
                                     ]),
-                                child: Icon(CupertinoIcons.minus,
-                                    size: 18, color: Color(0xFF4C53A5)),
+                                child: IconButton(
+                                  icon: Icon(
+                                    CupertinoIcons.minus,
+                                    size: 18,
+                                    color: Color(0xFF333333),
+                                  ),
+                                  onPressed: () => temp.minusOne(pp.listCart),
+                                ),
                               ),
                               Container(
                                 margin: EdgeInsets.symmetric(horizontal: 10),
                                 child: Text(
-                                  "01",
+                                  temp.count.toString(),
                                   style: TextStyle(
                                       fontSize: 18,
                                       fontWeight: FontWeight.bold,
@@ -120,8 +133,14 @@ class ItemPage extends StatelessWidget {
                                         offset: Offset(0, 3),
                                       )
                                     ]),
-                                child: Icon(CupertinoIcons.plus,
-                                    size: 18, color: Color(0xFF4C53A5)),
+                                child: IconButton(
+                                  icon: Icon(
+                                    CupertinoIcons.plus,
+                                    size: 18,
+                                    color: Color(0xFF333333),
+                                  ),
+                                  onPressed: () => temp.addOne(),
+                                ),
                               ),
                             ],
                           )
@@ -131,100 +150,155 @@ class ItemPage extends StatelessWidget {
                     Padding(
                       padding: EdgeInsets.symmetric(vertical: 12),
                       child: Text(
-                        "this is more detailed descesrptins of the product. you can wirte",
+                        temp.description ?? "",
                         style:
                             TextStyle(fontSize: 17, color: Color(0xFF333333)),
                       ),
                     ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(vertical: 8),
-                      child: Row(
-                        children: [
-                          Text(
-                            "size",
-                            style: TextStyle(
-                                fontSize: 18,
-                                color: Color(0xFF333333),
-                                fontWeight: FontWeight.bold),
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Row(
-                            children: [
-                              for (int i = 5; i < 10; i++)
-                                Container(
-                                  height: 30,
-                                  width: 30,
-                                  alignment: Alignment.center,
-                                  margin: EdgeInsets.symmetric(horizontal: 5),
-                                  decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.circular(30),
-                                      boxShadow: [
-                                        BoxShadow(
-                                            color: Colors.grey.withOpacity(0.5),
-                                            spreadRadius: 2,
-                                            blurRadius: 8)
-                                      ]),
-                                  child: Text(
-                                    i.toString(),
-                                    style: TextStyle(
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.bold,
-                                        color: Color(0xFF333333)),
-                                  ),
-                                )
-                            ],
-                          )
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(vertical: 8),
-                      child: Row(
-                        children: [
-                          Text(
-                            "Colors",
-                            style: TextStyle(
-                                fontSize: 18,
-                                color: Color(0xFF333333),
-                                fontWeight: FontWeight.bold),
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Row(
-                            children: [
-                              for (int i = 0; i < 5; i++)
-                                Container(
-                                  height: 30,
-                                  width: 30,
-                                  alignment: Alignment.center,
-                                  margin: EdgeInsets.symmetric(horizontal: 5),
-                                  decoration: BoxDecoration(
-                                      color: Clrs[i],
-                                      borderRadius: BorderRadius.circular(30),
-                                      boxShadow: [
-                                        BoxShadow(
-                                            color: Colors.grey.withOpacity(0.5),
-                                            spreadRadius: 2,
-                                            blurRadius: 8)
-                                      ]),
-                                )
-                            ],
-                          )
-                        ],
-                      ),
-                    )
+                    // Padding(
+                    //   padding: EdgeInsets.symmetric(vertical: 8),
+                    //   child: Row(
+                    //     children: [
+                    //       Text(
+                    //         "size",
+                    //         style: TextStyle(
+                    //             fontSize: 18,
+                    //             color: Color(0xFF333333),
+                    //             fontWeight: FontWeight.bold),
+                    //       ),
+                    //       SizedBox(
+                    //         width: 10,
+                    //       ),
+                    //       Row(
+                    //         children: [
+                    //           for (int i = 5; i < 10; i++)
+                    //             Container(
+                    //               height: 30,
+                    //               width: 30,
+                    //               alignment: Alignment.center,
+                    //               margin: EdgeInsets.symmetric(horizontal: 5),
+                    //               decoration: BoxDecoration(
+                    //                   color: Colors.white,
+                    //                   borderRadius: BorderRadius.circular(30),
+                    //                   boxShadow: [
+                    //                     BoxShadow(
+                    //                         color: Colors.grey.withOpacity(0.5),
+                    //                         spreadRadius: 2,
+                    //                         blurRadius: 8)
+                    //                   ]),
+                    //               child: Text(
+                    //                 i.toString(),
+                    //                 style: TextStyle(
+                    //                     fontSize: 18,
+                    //                     fontWeight: FontWeight.bold,
+                    //                     color: Color(0xFF333333)),
+                    //               ),
+                    //             )
+                    //         ],
+                    //       )
+                    //     ],
+                    //   ),
+                    // ),
+                    // Padding(
+                    //   padding: EdgeInsets.symmetric(vertical: 8),
+                    //   child: Row(
+                    //     children: [
+                    //       Text(
+                    //         "Colors",
+                    //         style: TextStyle(
+                    //             fontSize: 18,
+                    //             color: Color(0xFF333333),
+                    //             fontWeight: FontWeight.bold),
+                    //       ),
+                    //       SizedBox(
+                    //         width: 10,
+                    //       ),
+                    //       Row(
+                    //         children: [
+                    //           for (int i = 0; i < 5; i++)
+                    //             Container(
+                    //               height: 30,
+                    //               width: 30,
+                    //               alignment: Alignment.center,
+                    //               margin: EdgeInsets.symmetric(horizontal: 5),
+                    //               decoration: BoxDecoration(
+                    //                   color: Clrs[i],
+                    //                   borderRadius: BorderRadius.circular(30),
+                    //                   boxShadow: [
+                    //                     BoxShadow(
+                    //                         color: Colors.grey.withOpacity(0.5),
+                    //                         spreadRadius: 2,
+                    //                         blurRadius: 8)
+                    //                   ]),
+                    //             )
+                    //         ],
+                    //       )
+                    //     ],
+                    //   ),
+                    // )
                   ],
                 ),
               ),
             ),
-          )
+          ),
         ],
       ),
-      bottomNavigationBar: ItemBottomNavBar(),
+      bottomNavigationBar: Container(
+        height: 70,
+        padding: EdgeInsets.symmetric(horizontal: 20),
+        decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(10),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.withOpacity(0.5),
+                spreadRadius: 3,
+                blurRadius: 10,
+                offset: Offset(0, 3),
+              )
+            ]),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              "\$ " + (((temp.price!.toInt()) * temp.count).toString()),
+              style: TextStyle(
+                  fontSize: 25,
+                  fontWeight: FontWeight.bold,
+                  color: Color(0xFFee4d2d)),
+            ),
+            ElevatedButton.icon(
+              onPressed: () {
+                setState(() {
+                  pp.addToCart(
+                    temp.count,
+                    temp.id,
+                    temp.title,
+                    temp.price,
+                    temp.description,
+                    temp.category,
+                    temp.image,
+                    temp.rating,
+                  );
+                });
+              },
+              icon: Icon(CupertinoIcons.cart_badge_plus),
+              label: Text(
+                "Add too cart",
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              ),
+              style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all(Color(0xFFee4d2d)),
+                  padding: MaterialStateProperty.all(
+                    EdgeInsets.symmetric(vertical: 13, horizontal: 15),
+                  ),
+                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30)))),
+            )
+          ],
+        ),
+      ),
     );
   }
 }

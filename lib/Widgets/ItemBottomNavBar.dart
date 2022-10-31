@@ -2,12 +2,18 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:provider/provider.dart';
+
+import '../Model/product_model.dart';
+import '../provider/product_provider.dart';
 
 class ItemBottomNavBar extends StatelessWidget {
   const ItemBottomNavBar({super.key});
 
   @override
   Widget build(BuildContext context) {
+    var pp = Provider.of<ProductProvider>(context);
+    ProductModel temp = pp.detail;
     return BottomAppBar(
       child: Container(
         height: 70,

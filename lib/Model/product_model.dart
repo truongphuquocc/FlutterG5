@@ -1,4 +1,6 @@
-class ProductModel {
+import 'package:flutter/cupertino.dart';
+
+class ProductModel with ChangeNotifier {
   int? id;
   String? title;
   num? price;
@@ -6,15 +8,18 @@ class ProductModel {
   String? category;
   String? image;
   Rating? rating;
+  int count = 1;
 
-  ProductModel(
-      {this.id,
-      this.title,
-      this.price,
-      this.category,
-      this.description,
-      this.image,
-      this.rating});
+  ProductModel({
+    this.id,
+    this.title,
+    this.price,
+    this.category,
+    this.description,
+    this.image,
+    this.rating,
+    this.count = 1,
+  });
 
   factory ProductModel.fromJson(Map<String, dynamic> json) {
     var p = ProductModel(
@@ -26,6 +31,16 @@ class ProductModel {
         image: json['image'],
         rating: Rating.fromJson(json['rating']));
     return p;
+  }
+  void addOne() async {
+    this.count = this.count + 1;
+  }
+
+  void minusOne(List<ProductModel> listCart) async {
+    if (this.count == 1)
+      listCart.remove(this);
+    else
+      this.count = this.count - 1;
   }
 }
 

@@ -1,5 +1,8 @@
+import 'package:g5/Model/product_model.dart';
+import 'package:g5/pages/ItemPage.dart';
 import 'package:g5/provider/product_provider.dart';
 import 'package:g5/provider/product_provider.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 
 import 'package:flutter/material.dart';
@@ -52,7 +55,9 @@ class ProductItem extends StatelessWidget {
                 ),
                 InkWell(
                   onTap: () {
-                    Navigator.pushNamed(context, "itemPage");
+                    provider.detail = e;
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => ItemPage()));
                   },
                   child: Container(
                     margin: EdgeInsets.all(10),
@@ -64,7 +69,7 @@ class ProductItem extends StatelessWidget {
                   ),
                 ),
                 Container(
-                  padding: EdgeInsets.only(bottom: 8),
+                  padding: EdgeInsets.only(bottom: 1),
                   alignment: Alignment.centerLeft,
                   child: Text(
                     e.title ?? "",
@@ -76,7 +81,7 @@ class ProductItem extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.symmetric(vertical: 10),
+                  padding: EdgeInsets.symmetric(vertical: 5),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -88,10 +93,26 @@ class ProductItem extends StatelessWidget {
                           color: Color(0xFFee4d2d),
                         ),
                       ),
-                      Icon(
-                        Icons.shopping_cart_checkout,
-                        color: Color(0xFFee4d2d),
-                      )
+                      // Icon(
+                      //   Icons.shopping_cart_checkout,
+                      //   color: Color(0xFFee4d2d),
+                      // ),
+                      IconButton(
+                        icon: Icon(
+                          Icons.shopping_cart_checkout,
+                          color: Color(0xFFee4d2d),
+                        ),
+                        onPressed: () => provider.addToCart(
+                          e.count,
+                          e.id,
+                          e.title,
+                          e.price,
+                          e.description,
+                          e.category,
+                          e.image,
+                          e.rating,
+                        ),
+                      ),
                     ],
                   ),
                 ),

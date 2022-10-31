@@ -2,15 +2,20 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../provider/product_provider.dart';
 
 class CartItemSamples extends StatelessWidget {
-  const CartItemSamples({super.key});
+   CartItemSamples({super.key});
 
   @override
   Widget build(BuildContext context) {
+     var pp = Provider.of<ProductProvider>(context);
+
+               
     return Column(
       children: [
-        for (int i = 1; i <= 3; i++)
           Container(
             height: 110,
             margin: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
@@ -24,7 +29,7 @@ class CartItemSamples extends StatelessWidget {
                   groupValue: "",
                   activeColor: Color(0xFFee4d2d),
                   onChanged: (index) {},
-                ),
+                ), 
                 Container(
                   height: 70,
                   width: 70,
@@ -117,11 +122,13 @@ class CartItemSamples extends StatelessWidget {
                       )
                     ],
                   ),
-                ),
+                )
               ],
             ),
           ),
       ],
     );
+     
   }
 }
+

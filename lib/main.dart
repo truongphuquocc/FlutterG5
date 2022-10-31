@@ -15,7 +15,7 @@ void main() {
         routes: {
           "/": (context) => HomePage(),
           "cartPage": (context) => CartPage(),
-          "itemPage": (context) => ItemPage(),
+
         },
       ),
     ),

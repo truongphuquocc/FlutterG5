@@ -1,9 +1,6 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:g5/home_page.dart';
-
 import '../Widgets/productappbar_page.dart';
 import '../Widgets/productcategorywidgets.dart';
 import '../Widgets/productitemwidget.dart';
