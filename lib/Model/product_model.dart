@@ -42,6 +42,13 @@ class ProductModel with ChangeNotifier {
     else
       this.count = this.count - 1;
   }
+
+  void removeAnItemCart(List<ProductModel> listCart) async {
+    //if (this.count == 1)
+    listCart.remove(this);
+    //else
+    //this.count = this.count - 1;
+  }
 }
 
 class Rating {

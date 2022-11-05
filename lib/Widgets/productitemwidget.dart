@@ -7,20 +7,25 @@ import 'package:provider/provider.dart';
 
 import 'package:flutter/material.dart';
 
-class ProductItem extends StatelessWidget {
-  ProductItem({super.key});
+class Product_Item extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return ProductItem();
+  }
+}
 
+class ProductItem extends State<Product_Item> {
   @override
   Widget build(BuildContext context) {
-    var provider = Provider.of<ProductProvider>(context);
-    provider.getProducts();
+    var pp = Provider.of<ProductProvider>(context);
+    pp.getProducts();
     return GridView.count(
       childAspectRatio: 0.75,
       physics: NeverScrollableScrollPhysics(),
       crossAxisCount: 2,
       shrinkWrap: true,
       children: [
-        ...provider.list.map((e) {
+        ...pp.list.map((e) {
           return Container(
             padding: EdgeInsets.only(left: 15, right: 15, top: 10),
             margin: EdgeInsets.symmetric(vertical: 8, horizontal: 10),
@@ -55,7 +60,7 @@ class ProductItem extends StatelessWidget {
                 ),
                 InkWell(
                   onTap: () {
-                    provider.detail = e;
+                    pp.detail = e;
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) => ItemPage()));
                   },
@@ -98,21 +103,24 @@ class ProductItem extends StatelessWidget {
                       //   color: Color(0xFFee4d2d),
                       // ),
                       IconButton(
-                        icon: Icon(
-                          Icons.shopping_cart_checkout,
-                          color: Color(0xFFee4d2d),
-                        ),
-                        onPressed: () => provider.addToCart(
-                          e.count,
-                          e.id,
-                          e.title,
-                          e.price,
-                          e.description,
-                          e.category,
-                          e.image,
-                          e.rating,
-                        ),
-                      ),
+                          icon: Icon(
+                            Icons.shopping_cart_checkout,
+                            color: Color(0xFFee4d2d),
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              pp.addToCart(
+                                e.count,
+                                e.id,
+                                e.title,
+                                e.price,
+                                e.description,
+                                e.category,
+                                e.image,
+                                e.rating,
+                              );
+                            });
+                          }),
                     ],
                   ),
                 ),

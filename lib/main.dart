@@ -13,9 +13,8 @@ void main() {
       child: MaterialApp(
         //home: ProductListPage(),
         routes: {
-          "/": (context) => HomePage(),
-          "cartPage": (context) => CartPage(),
-
+          "/": (context) => Home_Page(),
+          "cartPage": (context) => Cart_Page(),
         },
       ),
     ),

@@ -15,14 +15,6 @@ class ItemPage extends StatefulWidget {
 }
 
 class _ItemPage extends State<ItemPage> {
-  List<Color> Clrs = [
-    Colors.red,
-    Colors.blue,
-    Colors.pink,
-    Colors.grey,
-    Colors.green,
-  ];
-
   @override
   Widget build(BuildContext context) {
     var pp = Provider.of<ProductProvider>(context);
@@ -33,9 +25,13 @@ class _ItemPage extends State<ItemPage> {
       body: ListView(
         children: [
           ItemAppBar(),
-          Padding(
-            padding: EdgeInsets.all(10),
-            child: Image.network(temp.image ?? ""),
+          Container(
+            width: 100,
+            height: 200,
+            child: Padding(
+              padding: EdgeInsets.all(10),
+              child: Image.network(temp.image ?? ""),
+            ),
           ),
           Arc(
             edge: Edge.TOP,
@@ -55,13 +51,17 @@ class _ItemPage extends State<ItemPage> {
                       ),
                       child: Row(
                         children: [
-                          Text(
-                            temp.title ?? "",
-                            overflow: TextOverflow.ellipsis,
-                            style: TextStyle(
-                              fontSize: 28,
-                              fontWeight: FontWeight.bold,
-                              color: Color(0xFFee4d2d),
+                          Container(
+                            width: 370,
+                            //color: Colors.red,
+                            child: Text(
+                              temp.title ?? "",
+                              overflow: TextOverflow.clip,
+                              style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                color: Color(0xFFee4d2d),
+                              ),
                             ),
                           ),
                         ],
@@ -92,7 +92,7 @@ class _ItemPage extends State<ItemPage> {
                                 padding: EdgeInsets.all(5),
                                 decoration: BoxDecoration(
                                     color: Colors.white,
-                                    borderRadius: BorderRadius.circular(20),
+                                    borderRadius: BorderRadius.circular(100),
                                     boxShadow: [
                                       BoxShadow(
                                         color: Colors.grey.withOpacity(0.5),
@@ -102,13 +102,17 @@ class _ItemPage extends State<ItemPage> {
                                       )
                                     ]),
                                 child: IconButton(
-                                  icon: Icon(
-                                    CupertinoIcons.minus,
-                                    size: 18,
-                                    color: Color(0xFF333333),
-                                  ),
-                                  onPressed: () => temp.minusOne(pp.listCart),
-                                ),
+                                    iconSize: 1,
+                                    icon: Icon(
+                                      CupertinoIcons.minus,
+                                      size: 18,
+                                      color: Color(0xFF333333),
+                                    ),
+                                    onPressed: () {
+                                      setState(() {
+                                        temp.minusOne(pp.listCart);
+                                      });
+                                    }),
                               ),
                               Container(
                                 margin: EdgeInsets.symmetric(horizontal: 10),
@@ -124,7 +128,7 @@ class _ItemPage extends State<ItemPage> {
                                 padding: EdgeInsets.all(5),
                                 decoration: BoxDecoration(
                                     color: Colors.white,
-                                    borderRadius: BorderRadius.circular(20),
+                                    borderRadius: BorderRadius.circular(100),
                                     boxShadow: [
                                       BoxShadow(
                                         color: Colors.grey.withOpacity(0.5),
@@ -134,13 +138,16 @@ class _ItemPage extends State<ItemPage> {
                                       )
                                     ]),
                                 child: IconButton(
-                                  icon: Icon(
-                                    CupertinoIcons.plus,
-                                    size: 18,
-                                    color: Color(0xFF333333),
-                                  ),
-                                  onPressed: () => temp.addOne(),
-                                ),
+                                    icon: Icon(
+                                      CupertinoIcons.plus,
+                                      size: 18,
+                                      color: Color(0xFF333333),
+                                    ),
+                                    onPressed: () {
+                                      setState(() {
+                                        temp.addOne();
+                                      });
+                                    }),
                               ),
                             ],
                           )
@@ -155,87 +162,6 @@ class _ItemPage extends State<ItemPage> {
                             TextStyle(fontSize: 17, color: Color(0xFF333333)),
                       ),
                     ),
-                    // Padding(
-                    //   padding: EdgeInsets.symmetric(vertical: 8),
-                    //   child: Row(
-                    //     children: [
-                    //       Text(
-                    //         "size",
-                    //         style: TextStyle(
-                    //             fontSize: 18,
-                    //             color: Color(0xFF333333),
-                    //             fontWeight: FontWeight.bold),
-                    //       ),
-                    //       SizedBox(
-                    //         width: 10,
-                    //       ),
-                    //       Row(
-                    //         children: [
-                    //           for (int i = 5; i < 10; i++)
-                    //             Container(
-                    //               height: 30,
-                    //               width: 30,
-                    //               alignment: Alignment.center,
-                    //               margin: EdgeInsets.symmetric(horizontal: 5),
-                    //               decoration: BoxDecoration(
-                    //                   color: Colors.white,
-                    //                   borderRadius: BorderRadius.circular(30),
-                    //                   boxShadow: [
-                    //                     BoxShadow(
-                    //                         color: Colors.grey.withOpacity(0.5),
-                    //                         spreadRadius: 2,
-                    //                         blurRadius: 8)
-                    //                   ]),
-                    //               child: Text(
-                    //                 i.toString(),
-                    //                 style: TextStyle(
-                    //                     fontSize: 18,
-                    //                     fontWeight: FontWeight.bold,
-                    //                     color: Color(0xFF333333)),
-                    //               ),
-                    //             )
-                    //         ],
-                    //       )
-                    //     ],
-                    //   ),
-                    // ),
-                    // Padding(
-                    //   padding: EdgeInsets.symmetric(vertical: 8),
-                    //   child: Row(
-                    //     children: [
-                    //       Text(
-                    //         "Colors",
-                    //         style: TextStyle(
-                    //             fontSize: 18,
-                    //             color: Color(0xFF333333),
-                    //             fontWeight: FontWeight.bold),
-                    //       ),
-                    //       SizedBox(
-                    //         width: 10,
-                    //       ),
-                    //       Row(
-                    //         children: [
-                    //           for (int i = 0; i < 5; i++)
-                    //             Container(
-                    //               height: 30,
-                    //               width: 30,
-                    //               alignment: Alignment.center,
-                    //               margin: EdgeInsets.symmetric(horizontal: 5),
-                    //               decoration: BoxDecoration(
-                    //                   color: Clrs[i],
-                    //                   borderRadius: BorderRadius.circular(30),
-                    //                   boxShadow: [
-                    //                     BoxShadow(
-                    //                         color: Colors.grey.withOpacity(0.5),
-                    //                         spreadRadius: 2,
-                    //                         blurRadius: 8)
-                    //                   ]),
-                    //             )
-                    //         ],
-                    //       )
-                    //     ],
-                    //   ),
-                    // )
                   ],
                 ),
               ),
@@ -261,7 +187,9 @@ class _ItemPage extends State<ItemPage> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              "\$ " + (((temp.price!.toInt()) * temp.count).toString()),
+              // ignore: prefer_interpolation_to_compose_strings
+              "\$ " +
+                  (((temp.price!.toDouble()) * temp.count).floor().toString()),
               style: TextStyle(
                   fontSize: 25,
                   fontWeight: FontWeight.bold,

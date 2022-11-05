@@ -10,6 +10,7 @@ class ProductProvider extends ChangeNotifier {
   List<ProductModel> listTemp = [];
   List<ProductModel> listCart = [];
   List<String> listCategory = [];
+  String category = "none";
   List<ProductModel> listCategorySelected = [];
   ProductModel detail = new ProductModel();
 
@@ -25,6 +26,30 @@ class ProductProvider extends ChangeNotifier {
     }).toList();
 
     notifyListeners();
+    this.getCateglory();
+  }
+
+  void getCateglory() async {
+    this.list.map((e) {
+      if (!listCategory.contains(e.category.toString())) {
+        listCategory.add(e.category.toString());
+      }
+    }).toList();
+  }
+
+  void checkProduct() async {
+    if (category != "none") {
+      for (int i = 0; i < list.length; i++) {
+        if (list[i].category != category) {
+          list.removeAt(i);
+          i--;
+        }
+      }
+    }
+  }
+
+  void removeCart() async {
+    listCart.remove(listCart);
   }
 
   static getProductsByID({required int id}) async {
@@ -35,6 +60,28 @@ class ProductProvider extends ChangeNotifier {
     // print("response ${jsonDecode(response.body)}");
     var data = jsonDecode(rs.body);
     return ProductModel.fromJson(data);
+  }
+
+  void search(String key) async {
+    var url = "https://fakestoreapi.com/products";
+    var client = http.Client();
+    var rs = await client.get(Uri.parse(url));
+    var jsonString = rs.body;
+    var jsonObject = jsonDecode(jsonString) as List;
+
+    if (key != "" && key.isNotEmpty) {
+      var listSearch = jsonObject.map((e) {}).toList();
+      List<ProductModel> result = [];
+      for (int i = 0; i < listSearch.length; i++) {
+        var item = listSearch[i];
+        final check = item.title?.toLowerCase().contains(key.toLowerCase());
+
+        if (check ?? false) {
+          result.add(item);
+        }
+      }
+      list = result;
+    }
   }
 
   void addToCart(int count, int? id, String? title, num? price,
