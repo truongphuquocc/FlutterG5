@@ -167,36 +167,14 @@ class HomePage extends State<Home_Page> {
                         ),
                         child: Column(
                           children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                // Container(
-                                //   padding: EdgeInsets.all(5),
-                                //   decoration: BoxDecoration(
-
-                                //     borderRadius: BorderRadius.circular(20),
-                                //   ),
-                                //   child: Text(
-                                //     "",
-                                //     style: TextStyle(
-                                //         fontSize: 14,
-                                //         color: Colors.white,
-                                //         fontWeight: FontWeight.bold),
-                                //   ),
-                                // ),
-                                // Icon(
-                                //   Icons.favorite_border,
-                                //   color: Colors.red,
-                                // )
-                              ],
-                            ),
                             InkWell(
                               onTap: () {
                                 pp.detail = e;
                                 Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => ItemPage()));
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => ItemPage()),
+                                );
                               },
                               child: Container(
                                 margin: EdgeInsets.all(10),
@@ -213,7 +191,6 @@ class HomePage extends State<Home_Page> {
                               child: Text(
                                 e.title ?? "",
                                 overflow: TextOverflow.ellipsis,
-                                
                                 style: TextStyle(
                                     fontSize: 14,
                                     color: Color(0xFF333333),

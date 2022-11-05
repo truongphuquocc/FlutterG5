@@ -21,194 +21,200 @@ class CartPage extends State<Cart_Page> {
     var pp = Provider.of<ProductProvider>(context);
     return Scaffold(
       body: ListView(
+        scrollDirection: Axis.vertical,
         children: [
           CartAppBar(),
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Column(
+          if ((pp.listCart.length) != 0)
+            Column(
               children: [
-                Container(
-                  height: 700,
-                  padding: EdgeInsets.only(top: 15),
-                  decoration: BoxDecoration(
-                    color: Color(0xFFEDECF2),
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(25),
-                      topRight: Radius.circular(25),
-                    ),
-                  ),
-                  child: Column(
-                    children: [
-                      //CartItemSamples(),
+                //CartItemSamples(),
 
-                      ...pp.listCart.map((e) {
-                        return Column(
+                ...pp.listCart.map((e) {
+                  return Column(
+                    children: [
+                      Container(
+                        height: 135,
+                        margin:
+                            EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+                        padding: EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(10)),
+                        child: Row(
                           children: [
                             Container(
-                              height: 135,
-                              margin: EdgeInsets.symmetric(
-                                  horizontal: 5, vertical: 5),
-                              padding: EdgeInsets.all(10),
-                              decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(10)),
-                              child: Row(
-                                children: [
-                                  Container(
-                                    height: 70,
-                                    width: 70,
-                                    margin: EdgeInsets.only(right: 10),
-                                    child: Image.network(e.image.toString()),
+                              height: 70,
+                              width: 70,
+                              margin: EdgeInsets.only(right: 10),
+                              child: Image.network(e.image.toString()),
+                            ),
+                            Column(
+                              children: [
+                                Padding(
+                                  padding: EdgeInsets.only(
+                                    top: 5,
+                                    left: 10,
                                   ),
-                                  Column(
+                                  child: Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
-                                      Padding(
-                                        padding: EdgeInsets.only(
-                                          top: 5,
-                                          left: 10,
-                                        ),
-                                        child: Row(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Container(
-                                              // margin: EdgeInsets.only(right: 70),
-                                              width: 220,
-                                              height: 50,
-                                              child: Text(
-                                                e.title ?? "",
-                                                //"title",
-                                                overflow: TextOverflow.clip,
-                                                maxLines: 3,
-                                                style: TextStyle(
-                                                    fontSize: 13,
-                                                    fontWeight: FontWeight.bold,
-                                                    color: Color(0xFF34007E)),
-                                              ),
-                                            ),
-                                            IconButton(
-                                              onPressed: () {
-                                                setState(() {
-                                                  e.removeAnItemCart(
-                                                      pp.listCart);
-                                                });
-                                              },
-                                              icon: Icon(Icons.delete,
-                                                  color: Colors.red),
-                                            ),
-                                          ],
+                                      Container(
+                                        // margin: EdgeInsets.only(right: 70),
+                                        width: 220,
+                                        height: 50,
+                                        child: Text(
+                                          e.title ?? "",
+                                          //"title",
+                                          overflow: TextOverflow.clip,
+                                          maxLines: 3,
+                                          style: TextStyle(
+                                              fontSize: 13,
+                                              fontWeight: FontWeight.bold,
+                                              color: Color(0xFF34007E)),
                                         ),
                                       ),
-                                      Padding(
-                                        padding:
-                                            EdgeInsets.symmetric(vertical: 5),
-                                        child: Row(
-                                          children: [
-                                            Container(
-                                              margin:
-                                                  EdgeInsets.only(right: 50),
-                                              width: 90,
-                                              child: Text(
-                                                "${(e.price! * (e.count).toDouble()).floor()}\$",
-                                                style: TextStyle(
-                                                    fontSize: 16,
-                                                    fontWeight: FontWeight.bold,
-                                                    color: Color(0xFF34007E)),
-                                              ),
-                                            ),
-                                            Row(
-                                              children: [
-                                                Container(
-                                                  //padding: EdgeInsets.all(4),
-                                                  decoration: BoxDecoration(
-                                                      color: Colors.white,
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              20),
-                                                      boxShadow: [
-                                                        BoxShadow(
-                                                          color: Colors.grey
-                                                              .withOpacity(0.5),
-                                                          spreadRadius: 1,
-                                                          blurRadius: 10,
-                                                        )
-                                                      ]),
-                                                  child: IconButton(
-                                                      iconSize: 1,
-                                                      onPressed: () {
-                                                        setState(() {
-                                                          e.addOne();
-                                                        });
-                                                      },
-                                                      icon: Icon(
-                                                        CupertinoIcons.plus,
-                                                        size: 18,
-                                                      )),
-                                                ),
-                                                Container(
-                                                  margin: EdgeInsets.symmetric(
-                                                      horizontal: 10),
-                                                  child: Text(
-                                                    e.count.toString(),
-                                                    style: TextStyle(
-                                                        fontSize: 16,
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                        color:
-                                                            Color(0xFF34007E)),
-                                                  ),
-                                                ),
-                                                Container(
-                                                  //padding: EdgeInsets.all(4),
-                                                  decoration: BoxDecoration(
-                                                      color: Colors.white,
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              20),
-                                                      boxShadow: [
-                                                        BoxShadow(
-                                                          color: Colors.grey
-                                                              .withOpacity(0.5),
-                                                          spreadRadius: 1,
-                                                          blurRadius: 10,
-                                                        )
-                                                      ]),
-                                                  child: IconButton(
-                                                      onPressed: () {
-                                                        setState(() {
-                                                          e.minusOne(
-                                                              pp.listCart);
-                                                        });
-                                                      },
-                                                      icon: Icon(
-                                                        CupertinoIcons.minus,
-                                                        size: 18,
-                                                      )),
-                                                )
-                                              ],
-                                            ),
-                                          ],
-                                        ),
-                                      )
+                                      IconButton(
+                                        onPressed: () {
+                                          setState(() {
+                                            e.removeAnItemCart(pp.listCart);
+                                          });
+                                        },
+                                        icon: Icon(Icons.delete,
+                                            color: Colors.red),
+                                      ),
                                     ],
-                                  )
-                                ],
-                              ),
-                            ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.symmetric(vertical: 5),
+                                  child: Row(
+                                    children: [
+                                      Container(
+                                        margin: EdgeInsets.only(right: 50),
+                                        width: 90,
+                                        child: Text(
+                                          "${(e.price! * (e.count).toDouble()).floor()}\$",
+                                          style: TextStyle(
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.bold,
+                                              color: Color(0xFF34007E)),
+                                        ),
+                                      ),
+                                      Row(
+                                        children: [
+                                          Container(
+                                            //padding: EdgeInsets.all(4),
+                                            decoration: BoxDecoration(
+                                                color: Colors.white,
+                                                borderRadius:
+                                                    BorderRadius.circular(20),
+                                                boxShadow: [
+                                                  BoxShadow(
+                                                    color: Colors.grey
+                                                        .withOpacity(0.5),
+                                                    spreadRadius: 1,
+                                                    blurRadius: 10,
+                                                  )
+                                                ]),
+                                            child: IconButton(
+                                                iconSize: 1,
+                                                onPressed: () {
+                                                  setState(() {
+                                                    e.addOne();
+                                                  });
+                                                },
+                                                icon: Icon(
+                                                  CupertinoIcons.plus,
+                                                  size: 18,
+                                                )),
+                                          ),
+                                          Container(
+                                            margin: EdgeInsets.symmetric(
+                                                horizontal: 10),
+                                            child: Text(
+                                              e.count.toString(),
+                                              style: TextStyle(
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.bold,
+                                                  color: Color(0xFF34007E)),
+                                            ),
+                                          ),
+                                          Container(
+                                            //padding: EdgeInsets.all(4),
+                                            decoration: BoxDecoration(
+                                                color: Colors.white,
+                                                borderRadius:
+                                                    BorderRadius.circular(20),
+                                                boxShadow: [
+                                                  BoxShadow(
+                                                    color: Colors.grey
+                                                        .withOpacity(0.5),
+                                                    spreadRadius: 1,
+                                                    blurRadius: 10,
+                                                  )
+                                                ]),
+                                            child: IconButton(
+                                                onPressed: () {
+                                                  setState(() {
+                                                    e.minusOne(pp.listCart);
+                                                  });
+                                                },
+                                                icon: Icon(
+                                                  CupertinoIcons.minus,
+                                                  size: 18,
+                                                )),
+                                          )
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                )
+                              ],
+                            )
                           ],
-                        );
-                      }),
+                        ),
+                      ),
                     ],
-                  ),
-                ),
+                  );
+                }),
               ],
+            )
+          else
+            Padding(
+              padding: const EdgeInsets.only(top: 50),
+              child: Row(
+                //crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Color(0xFFee4d2d),
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: Icon(
+                      CupertinoIcons.back,
+                      color: Colors.white,
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 10),
+                    child: Text(
+                      "Mua them hang di thang lon",
+                      style: TextStyle(
+                          color: Color(0xFFee4d2d),
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20),
+                    ),
+                  )
+                ],
+              ),
             ),
-          )
         ],
       ),
       bottomNavigationBar: Container(
         padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-        height: 130,
+        height: 120,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
